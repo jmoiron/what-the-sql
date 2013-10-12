@@ -1,0 +1,119 @@
+
+body {
+    font-size: 18px;
+    line-height: 1.75em;
+}
+
+h1 {
+    color: #222;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h1.front {
+    margin-top: 3em;
+}
+
+a {
+    font-weight: bold;
+    color: #1B66FF;
+}
+
+a:visited {
+    color: #1B66FF;
+}
+
+.button-container {
+    text-align: center;
+    margin: 3em;
+}
+
+a.button {
+    text-decoration: none;
+    padding: 10px 30px;
+    border-radius: 3px;
+    color: white;
+    background-color: #49A34B;
+}
+
+a.button:hover {
+    background-color: #397F3A;
+}
+
+.content {
+    color: #444;
+    font-family: "PT Sans", "Helvetica Neue", "Helvetica", sans-serif;
+    width: 800px;
+    margin: 3em auto;
+}
+
+/* test page */
+
+.explanation img {
+    display: block;
+    margin: 0 auto;
+}
+
+#question {
+    font-weight: bold;
+    padding-left: 20px;
+    margin-bottom: 2em;
+}
+#question .number {
+    color: white;
+    background-color: #49A34B;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    border-radius: 16px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+#console {
+    font-family: "Consolas", "Inconsolata", "Menlo", "DejaVu Sans Mono", monospace;
+    color: #333;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    background-color: #fafafa;
+    text-shadow: 1px 1px 1px #fff;
+    font-size: 14px;
+    line-height: 1.40em;
+}
+
+.echo {
+    color: #49A34B;
+}
+
+.jquery-console-inner {
+    /* this must match the #console height */
+    height: 300px;
+    padding: 10px 5px;
+    overflow-y: auto;
+}
+
+.jquery-console-message.error {
+    color: #CF4647;
+}
+
+.jquery-console-message.result {
+    white-space: pre;
+    color: #575;
+}
+
+.jquery-console-prompt-label {
+    color: #111;
+    font-weight: bold;
+}
+
+.jquery-console-prompt-box {
+    word-wrap: break-word;
+}
+
+.jquery-console-cursor {
+    background: #555;
+    color: #eee;
+    text-shadow: none;
+}

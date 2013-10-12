@@ -1,0 +1,23 @@
+<h1>What the SQL?</h1>
+
+<div class="explanation">
+    <p>
+        You've been given your own <a href="http://www.sqlite.org/lang.html">SQLite</a>
+        database for this test. You can do whatever you want with the data, but if you
+        delete or destroy it, you may not be able to finish the test!  Your database 
+        has the following schema:
+    </p>
+    <img src="/static/db.png">
+</div>
+
+<div id="question">
+    <span class="number">1</span> List employee names who have a bigger salary than their boss
+</div>
+
+<div id="console">
+</div>
+
+<script type="text/javascript">
+    var dbId = "{{ Id }}";
+</script>
+

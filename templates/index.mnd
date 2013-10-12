@@ -1,0 +1,33 @@
+<h1 class="front">What the SQL?</h1>
+
+<p>
+    Over the past few years there's been a rennaisance in data storage which has
+    been focused on making non-relational object persistence easier.  This maps
+    well to the needs of lots of mobile and web applications.
+</p>
+
+<p>
+    While another tool in the toolbox is a great thing, new programmers are starting
+    to forget <em>the old ways</em>.  Widespread use of ActiveRecord
+    style ORMs in Rails and Django means that many developers who use a traditional
+    RDBMS might not even fully grasp the way that data gets queried.
+</p>
+
+<p>
+    Inspired by a <a href="http://www.jitbit.com/news/181-jitbits-sql-interview-questions/">great
+    blog post</a> about a simple SQL interview question set, I decided to
+    create an interactive version.  Hopefully this will reaffirm or jog
+    the memory of experienced programmers who perhaps do not deal with SQL
+    anymore, and start novices down the path of picking up SQL as a skill.
+</p>
+
+<div class="button-container">
+    <a class="button" href="/new">Take the Test!</a>
+</div>
+
+<p>
+    There are <a href="http://www.mysqlperformanceblog.com/">a number</a> of
+    <a href="http://use-the-index-luke.com/">great resources</a> out there to
+    help you learn how to wrangle performance in production like a boss.  This
+    basic skills test is for programmers, not DBAs.
+</p>
