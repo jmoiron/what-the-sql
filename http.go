@@ -2,11 +2,13 @@ package main
 
 import (
 	"encoding/json"
+
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/pat"
 	"github.com/gorilla/schema"
 	"github.com/jmoiron/mandira"
+	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -60,11 +62,18 @@ func newTest(w http.ResponseWriter, req *http.Request) {
 
 func detail(w http.ResponseWriter, req *http.Request) {
 	id := req.URL.Query().Get(":id")
-	_, err := OpenDatabase(id)
+	dbm, err := OpenDatabase(id)
 	if err != nil {
 		abort(w, 500, "Could not open a database for that id: "+err.Error())
+		return
 	}
-	w.Write([]byte(render("test.mnd", map[string]interface{}{"Id": id})))
+	status := Status{}
+	err = dbm.Dbx.Get(&status, "SELECT * FROM _status;")
+	if err != nil {
+		abort(w, 500, "Could not open a database for that id: "+err.Error())
+		return
+	}
+	w.Write([]byte(render("test.mnd", map[string]interface{}{"Id": id, "Question": Questions[status.CurrentQuestion-1]})))
 }
 
 type Sql struct {
@@ -73,8 +82,10 @@ type Sql struct {
 }
 
 type JsonResponse struct {
-	Ok       bool   `json:"ok"`
-	Response string `json:"response"`
+	Ok           bool     `json:"ok"`
+	Response     string   `json:"response"`
+	NextQuestion Question `json:"next,omitempty"`
+	Answered     bool     `json:"answered,omitempty"`
 }
 
 type JsonError struct {
@@ -117,7 +128,25 @@ func exec(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	w.Write(JsonResponse{Ok: true, Response: result.String()}.Bytes())
+	response := JsonResponse{Ok: true, Response: result.String()}
+
+	// if the current question was answered correctly, set this db to the next question.
+	if result.Answered {
+		// there's some weird maths below because sometimes CurrentQuestion is
+		// being used as a number and sometimes it's being used as an index
+		response.Answered = true
+		if result.CurrentQuestion == len(Questions) {
+			response.NextQuestion = Questions[result.CurrentQuestion-1]
+		} else {
+			response.NextQuestion = Questions[result.CurrentQuestion]
+			_, err = dbm.Exec("UPDATE _status SET currentquestion=?;", result.CurrentQuestion+1)
+			if err != nil {
+				log.Println(err)
+			}
+		}
+	}
+
+	w.Write(response.Bytes())
 }
 
 func init() {

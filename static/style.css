@@ -58,8 +58,9 @@ a.button:hover {
 
 #question {
     font-weight: bold;
+    padding: 10px;
     padding-left: 20px;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 #question .number {
     color: white;

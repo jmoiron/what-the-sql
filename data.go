@@ -1,8 +1,6 @@
 package main
 
-import (
-	"github.com/jmoiron/modl"
-)
+import "github.com/jmoiron/modl"
 
 /* This data was generated at http://www.generatedata.com/ */
 
@@ -126,6 +124,81 @@ var Employees = []Employee{
 	{EmployeeID: 100, DepartmentID: 8, BossID: 71, Name: "Jocelyn Guy", Salary: 191937},
 }
 
+var Question1Answer = []string{
+	"Cecilia Preston", "Claudia House", "Dawn Alston", "Cleo Holland",
+	"Bruce Guzman", "Shad Chapman", "Sierra Carpenter", "Lester Wells",
+	"Samson Jenkins", "Colorado Whitley",
+}
+
+var Question2Answer = []string{
+	"Claudia House", "Barrett Pruitt", "Shad Chapman", "Gavin Cardenas",
+	"Leo Chen", "Germane Bartlett", "Cecilia Preston", "Reuben Snider",
+	"Levi Mcleod", "Amethyst Cervantes", "Shelly Le", "John Carrillo",
+	"Aquila Lane", "Roanna Benton", "Rhonda Bowman", "Dawn Alston",
+	"Sigourney Black", "Marvin Hansen", "Kennedy Contreras", "Petra Levy",
+	"Samson Jenkins", "Sierra Carpenter", "Keely Peterson", "Bruce Guzman",
+	"Shana Finch", "Selma Alvarez", "Edward Collins", "Wade Cline",
+	"Elijah Head", "Lester Wells", "Kylan Guerra", "August Maxwell",
+	"Malachi Campbell", "Joan Schroeder", "Cleo Holland", "Colorado Whitley",
+	"Hunter Cameron", "Palmer Oneil", "Jocelyn Guy",
+}
+
+var Question3Answer = []string{
+	"Rhonda Bowman", "Ivory Mckenzie", "Cleo Holland", "Claudia House",
+	"Edward Collins", "Lester Wells", "Bruce Guzman", "Garth Young",
+	"Cecilia Preston", "Shana Finch",
+}
+
+var Question4Answer = []string{
+	"Curae; Incorporated", "Eget Mollis Lectus Limited",
+	"Eu Placerat Institute", "Interdum Enim Non Foundation",
+	"Mattis Semper Dui Foundation", "Nonummy PC",
+	"Pharetra Sed PC", "Sociis Natoque Limited",
+}
+
+var Question5Answer = []string{
+	"Gretchen Benton", "Desiree Reid", "Deborah Mills", "Claudia House",
+	"Mechelle Kramer", "Barrett Pruitt", "Kyra Harrell", "Shad Chapman",
+	"Dahlia Wiggins", "Oliver Pena", "Gavin Cardenas", "Leo Chen",
+	"Montana Clayton", "Uma Daugherty", "Lunea Cole", "Adrian Cleveland",
+	"Tasha Reyes", "Teagan Alston", "Channing York", "Cecilia Preston",
+	"Wyatt Richmond", "Willa Hayes", "Ishmael Pace", "Stuart White",
+	"Ursa Ruiz", "Reuben Snider", "Levi Mcleod", "Hall Morrow",
+	"Amethyst Cervantes", "Shelly Le", "John Carrillo", "Aquila Lane",
+	"Ferdinand Webb", "Mia Cash", "Rhonda Bowman", "Dawn Alston",
+	"Kennan Flowers", "Isadora Gilliam", "Sigourney Black", "Alexa Mccormick",
+	"Marvin Hansen", "Kennedy Contreras", "Petra Levy", "Samson Jenkins",
+	"Rose Macdonald", "Magee Espinoza", "Sierra Carpenter", "Ulric Colon",
+	"Vaughan Mckay", "Bruce Guzman", "Shana Finch", "Selma Alvarez",
+	"Edward Collins", "Gail Mckinney", "Fletcher Jensen", "Melyssa Glenn",
+	"Kitra Dotson", "Kelsey Everett", "Elijah Head", "Kylan Guerra",
+	"Seth Pope", "August Maxwell", "Phillip Hansen", "Malachi Campbell",
+	"Howard Roberts", "Charde Hanson", "Garth Young", "Griffin Kirkland",
+	"Joan Schroeder", "Cleo Holland", "Lana Eaton", "Amaya Lynn",
+	"Vernon Whitehead", "Wylie Paul", "Ava Britt", "Kelsie Carver",
+	"Hunter Cameron", "Myles Rivers", "Palmer Oneil", "Henry Blanchard",
+	"Amela Martinez", "Rylee Shaw", "Violet Sykes", "Amela Galloway",
+	"James Nolan", "Ivory Mckenzie", "Eliana Nichols", "Patricia Vargas",
+	"Jocelyn Guy",
+}
+
+var Question6Answer = [][]string{
+	{"Curae; Incorporated", "0"},
+	{"Duis Incorporated", "1972064"},
+	{"Eget Mollis Lectus Limited", "2039258"},
+	{"Et Libero Foundation", "2409498"},
+	{"Eu Placerat Institute", "1702929"},
+	{"Feugiat Non Inc.", "2053588"},
+	{"Interdum Enim Non Foundation", "768975"},
+	{"Mattis Semper Dui Foundation", "0"},
+	{"Nam Industries", "1790336"},
+	{"Nascetur Ridiculus Mus Associates", "2572387"},
+	{"Nonummy PC", "0"},
+	{"Pede Nunc Ltd", "1836657"},
+	{"Pharetra Sed PC", "0"},
+	{"Sociis Natoque Limited", "1589761"},
+}
+
 func LoadData(dbm *modl.DbMap) {
 	txn, err := dbm.Begin()
 	if err != nil {
@@ -138,5 +211,7 @@ func LoadData(dbm *modl.DbMap) {
 	for _, employee := range Employees {
 		txn.Insert(&employee)
 	}
+	status := Status{CurrentQuestion: 1}
+	txn.Insert(&status)
 	txn.Commit()
 }

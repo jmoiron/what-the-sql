@@ -6,12 +6,26 @@ $(function() {
         return line !== "";
     }
 
+    function updateQuestion(next) {
+        var $question = $("#question"),
+            orig = $question.css("backgroundColor");
+        $question.css({backgroundColor: "#E1F5C4"});
+        $("#question .text").html("<span class='correct'>Correct!</span>");
+        setTimeout(function() {
+            $("#question .number").text(next.number);
+            $("#question .text").text(next.text);
+            $question.css({backgroundColor: orig});
+        }, 3000);
+    }
+
     function handle(line, report) {
         $.post(url, {
             id: dbId,
             sql: line
         }).done(function(data) {
-            console.log(data);
+            if (data.answered) {
+                updateQuestion(data.next);
+            }
             if (data.error) {
                 report([{msg: data.error, className: "error"}]);
             } else {

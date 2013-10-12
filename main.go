@@ -28,6 +28,10 @@ type Department struct {
 	Name         string
 }
 
+type Status struct {
+	CurrentQuestion int
+}
+
 func exists(id string) bool {
 	dbpath := path.Join(DBROOT, id+".db")
 	_, err := os.Stat(dbpath)
@@ -42,6 +46,7 @@ func OpenDatabase(id string) (*modl.DbMap, error) {
 	dbm := modl.NewDbMap(&db.DB, modl.SqliteDialect{})
 	dbm.AddTableWithName(Employee{}, "Employees").SetKeys(true, "EmployeeID")
 	dbm.AddTableWithName(Department{}, "Departments").SetKeys(true, "DepartmentID")
+	dbm.AddTableWithName(Status{}, "_status").SetKeys(true, "CurrentQuestion")
 	return dbm, err
 }
 
@@ -77,5 +82,5 @@ func main() {
 }
 
 func init() {
-	sqlx.NameMapper = func(s string) string { return s }
+	//sqlx.NameMapper = func(s string) string { return s }
 }

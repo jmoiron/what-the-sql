@@ -11,7 +11,9 @@
 </div>
 
 <div id="question">
-    <span class="number">1</span> List employee names who have a bigger salary than their boss
+    {{#Question}}
+    <span class="number">{{Number}}</span><span class="text">{{Text}}</span>
+    {{/Question}}
 </div>
 
 <div id="console">
