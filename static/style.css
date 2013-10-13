@@ -56,13 +56,13 @@ a.button:hover {
     margin: 0 auto;
 }
 
-#question {
+.question {
     font-weight: bold;
     padding: 10px;
     padding-left: 20px;
-    margin-bottom: 1em;
+    margin: 1em 0;
 }
-#question .number {
+.question .number {
     color: white;
     background-color: #49A34B;
     width: 32px;
@@ -72,6 +72,15 @@ a.button:hover {
     margin-right: 10px;
     text-align: center;
 }
+
+.answer {
+    font-family: "Consolas", "Inconsolata", "Menlo", "DejaVu Sans Mono", monospace;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+
 
 #console {
     font-family: "Consolas", "Inconsolata", "Menlo", "DejaVu Sans Mono", monospace;

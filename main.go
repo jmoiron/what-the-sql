@@ -32,6 +32,12 @@ type Status struct {
 	CurrentQuestion int
 }
 
+type Answer struct {
+	Number   int
+	Question string
+	Answer   string
+}
+
 func exists(id string) bool {
 	dbpath := path.Join(DBROOT, id+".db")
 	_, err := os.Stat(dbpath)
@@ -47,6 +53,7 @@ func OpenDatabase(id string) (*modl.DbMap, error) {
 	dbm.AddTableWithName(Employee{}, "Employees").SetKeys(true, "EmployeeID")
 	dbm.AddTableWithName(Department{}, "Departments").SetKeys(true, "DepartmentID")
 	dbm.AddTableWithName(Status{}, "_status").SetKeys(true, "CurrentQuestion")
+	dbm.AddTableWithName(Answer{}, "_answers").SetKeys(true, "Number")
 	return dbm, err
 }
 

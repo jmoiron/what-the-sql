@@ -81,13 +81,36 @@ func Question5(results [][]interface{}) bool {
 	return CompareResults(results, Question5Answer)
 }
 
+func Question6(results [][]interface{}) bool {
+	if len(results) != len(Question6Answer) {
+		return false
+	}
+	if len(results[0]) != 2 {
+		return false
+	}
+
+	org1 := make([]string, 0, len(results))
+	org2 := make([]string, 0, len(results))
+
+	for _, res := range results {
+		if res[0] == nil || res[1] == nil {
+			return false
+		}
+		s1, s2 := res[0].(string), res[1].(string)
+		org1 = append(org1, s1+"|"+s2)
+		org2 = append(org2, s2+"|"+s1)
+	}
+	return setCompare(org1, Question6Answer) || setCompare(org2, Question6Answer)
+
+}
+
 var Questions = []Question{
 	{1, "List the top 10 employee names by salary.", Question1},
 	{2, "List employee names who have a bigger salary than their boss.", Question2},
 	{3, "List employee names who have the biggest salary in their departments.", Question3},
 	{4, "List department names that have less than 10 people in it.", Question4},
 	{5, "List employees who have a boss in a different department from them.", Question5},
-	{6, "List all department names along with the total salary there.", NoopCheck},
+	{6, "List all department names along with the total salary there.", Question6},
 }
 
 type SqlResult struct {

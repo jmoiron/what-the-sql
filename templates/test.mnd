@@ -10,7 +10,7 @@
     <img src="/static/db.png">
 </div>
 
-<div id="question">
+<div id="question" class="question">
     {{#Question}}
     <span class="number">{{Number}}</span><span class="text">{{Text}}</span>
     {{/Question}}

@@ -135,8 +135,17 @@ func exec(w http.ResponseWriter, req *http.Request) {
 		// there's some weird maths below because sometimes CurrentQuestion is
 		// being used as a number and sometimes it's being used as an index
 		response.Answered = true
-		if result.CurrentQuestion == len(Questions) {
-			response.NextQuestion = Questions[result.CurrentQuestion-1]
+		// save their answer to each question
+		answer := Answer{
+			Number:   result.CurrentQuestion,
+			Question: Questions[result.CurrentQuestion-1].Text,
+			Answer:   sql.Sql,
+		}
+		dbm.Insert(&answer)
+
+		if result.CurrentQuestion >= len(Questions) {
+			q := Question{Number: -1, Text: "Complete"}
+			response.NextQuestion = q
 		} else {
 			response.NextQuestion = Questions[result.CurrentQuestion]
 			_, err = dbm.Exec("UPDATE _status SET currentquestion=?;", result.CurrentQuestion+1)
@@ -149,11 +158,32 @@ func exec(w http.ResponseWriter, req *http.Request) {
 	w.Write(response.Bytes())
 }
 
+func complete(w http.ResponseWriter, req *http.Request) {
+	id := req.URL.Query().Get(":id")
+	dbm, err := OpenDatabase(id)
+	if err != nil {
+		abort(w, 500, "Could not open a database for that id: "+err.Error())
+		return
+	}
+	answers := []Answer{}
+	err = dbm.Select(&answers, "SELECT * FROM _answers ORDER BY number;")
+	if err != nil {
+		abort(w, 500, "Sorry, something went wrong: "+err.Error())
+		return
+	}
+	context := map[string]interface{}{
+		"Id":      id,
+		"Answers": answers,
+	}
+	w.Write([]byte(render("complete.mnd", context)))
+}
+
 func init() {
 	r := &Router{}
 	r.Get("/new", newTest)
-	r.Get("/{id:[^/]+}", detail)
+	r.Get("/{id:[^/]+}/complete", complete)
 	r.Post("/{id:[^/]+}/exec", exec)
+	r.Get("/{id:[^/]+}", detail)
 	r.Get("/", index)
 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))

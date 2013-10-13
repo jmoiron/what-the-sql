@@ -182,21 +182,21 @@ var Question5Answer = []string{
 	"Jocelyn Guy",
 }
 
-var Question6Answer = [][]string{
-	{"Curae; Incorporated", "0"},
-	{"Duis Incorporated", "1972064"},
-	{"Eget Mollis Lectus Limited", "2039258"},
-	{"Et Libero Foundation", "2409498"},
-	{"Eu Placerat Institute", "1702929"},
-	{"Feugiat Non Inc.", "2053588"},
-	{"Interdum Enim Non Foundation", "768975"},
-	{"Mattis Semper Dui Foundation", "0"},
-	{"Nam Industries", "1790336"},
-	{"Nascetur Ridiculus Mus Associates", "2572387"},
-	{"Nonummy PC", "0"},
-	{"Pede Nunc Ltd", "1836657"},
-	{"Pharetra Sed PC", "0"},
-	{"Sociis Natoque Limited", "1589761"},
+var Question6Answer = []string{
+	"Curae; Incorporated|0",
+	"Duis Incorporated|1972064",
+	"Eget Mollis Lectus Limited|2039258",
+	"Et Libero Foundation|2409498",
+	"Eu Placerat Institute|1702929",
+	"Feugiat Non Inc.|2053588",
+	"Interdum Enim Non Foundation|768975",
+	"Mattis Semper Dui Foundation|0",
+	"Nam Industries|1790336",
+	"Nascetur Ridiculus Mus Associates|2572387",
+	"Nonummy PC|0",
+	"Pede Nunc Ltd|1836657",
+	"Pharetra Sed PC|0",
+	"Sociis Natoque Limited|1589761",
 }
 
 func LoadData(dbm *modl.DbMap) {
