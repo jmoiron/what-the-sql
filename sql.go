@@ -6,7 +6,7 @@ import (
 	"errors"
 
 	"github.com/jmoiron/modl"
-	"github.com/jmoiron/termtable"
+	"github.com/stevedomin/termtable"
 )
 
 type Question struct {
